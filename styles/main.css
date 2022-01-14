@@ -1,0 +1,142 @@
+body {
+  background-image: url(../assets/images/brickwall.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: 300px;
+  position: relative;
+  margin: 0px;
+}
+
+.alex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+.alex__head {
+  -webkit-animation: mymove 5s infinite;
+          animation: mymove 5s infinite;
+}
+.alex__image {
+  height: 700px;
+  width: 600px;
+}
+
+.neon {
+  display: flex;
+}
+.neon__light {
+  display: flex;
+  height: 800px;
+}
+.neon__intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 30px;
+  font-family: sans-serif;
+  bottom: 0px;
+  top: 250px;
+  left: 600px;
+  right: 0px;
+}
+.neon__starting {
+  color: #e4dd3b;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  -webkit-animation: text 3s 1;
+          animation: text 3s 1;
+}
+.neon__insert {
+  display: flex;
+  -webkit-animation: text 3s 1;
+          animation: text 3s 1;
+}
+.neon__players {
+  color: #e4dd3b;
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  padding-right: 90px;
+}
+.neon__number {
+  width: 300px;
+}
+.neon__button {
+  margin: 0;
+  margin-top: 100px;
+  padding: 0;
+  display: flex;
+  height: 100px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  border-style: inset;
+  background-color: #000;
+  font-family: sans-serif;
+  padding: 20px 20px;
+  display: inline-block;
+  color: #e4dd3b;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 30px;
+  overflow: hidden;
+  -webkit-animation: text 3s 1;
+          animation: text 3s 1;
+}
+.neon__button--link {
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  -webkit-animation: text 3s 1;
+          animation: text 3s 1;
+}
+.neon__button:hover {
+  background: #e0e722;
+  box-shadow: 0 0 50px #e0e722;
+  text-decoration: none;
+}
+
+@-webkit-keyframes mymove {
+  50% {
+    transform: rotate(20deg);
+  }
+}
+
+@keyframes mymove {
+  50% {
+    transform: rotate(20deg);
+  }
+}
+@-webkit-keyframes text {
+  0% {
+    color: black;
+    margin-bottom: -5px;
+  }
+  30% {
+    letter-spacing: 25px;
+    margin-bottom: -10px;
+  }
+  85% {
+    letter-spacing: 8px;
+    margin-bottom: -10px;
+  }
+}
+@keyframes text {
+  0% {
+    color: black;
+    margin-bottom: -5px;
+  }
+  30% {
+    letter-spacing: 25px;
+    margin-bottom: -10px;
+  }
+  85% {
+    letter-spacing: 8px;
+    margin-bottom: -10px;
+  }
+}/*# sourceMappingURL=main.css.map */
