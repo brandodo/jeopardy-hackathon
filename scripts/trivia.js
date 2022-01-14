@@ -1,15 +1,32 @@
 let questionBoxes = document.querySelectorAll(".question__item");
 let selectedQuestion = document.querySelector(".selected-question");
 let overlayBg = document.querySelector(".overlay");
+let playerScoreboard = document.querySelector(".player-scoreboard");
 let giphyAPIKey = "eFXa6sZe3b1BwD889es0gi4VBFlhUPAT";
 let playerData = new URLSearchParams(window.location.search);
 let numberOfPlayers = playerData.get("numberPlayers");
+let randomTurn = Math.floor(Math.random() * numberOfPlayers + 1);
 
-buildGame(numberOfPlayers);
+class Player {
+  constructor(playerNumber, points) {
+    this.playerNumber = playerNumber;
+    this.points = points;
+  }
+
+  render() {
+    return `
+    <div class="player-scoreboard__player-container">
+      <div id="player-${this.playerNumber}" class="player-scoreboard__label">Player ${this.playerNumber}</div>
+      <div id="player-${this.playerNumber}-points" class="player-scoreboard__score">${this.points}</div>
+    </div>
+    `;
+  }
+}
 
 class Question {
-  constructor(question, answer, choices) {
+  constructor(question, difficulty, answer, choices) {
     this.question = question;
+    this.difficulty = difficulty;
     this.answer = answer;
     this.choices = choices;
   }
@@ -46,16 +63,29 @@ class Question {
     questionContainer.innerText = this.question;
     selectedQuestion.appendChild(questionContainer);
     selectedQuestion.appendChild(answerContainer);
-    addChoiceListeners(this.answer, questionContainer, answerContainer);
+    addChoiceListeners(
+      this.answer,
+      questionContainer,
+      answerContainer,
+      this.difficulty
+    );
   }
 }
 
 // build jeopardy game
-function buildGame(nPlayers) {
+function buildGame() {
   let difficulty;
   let category;
   let categoryId;
   let questions = [];
+  let player;
+
+  for (i = 1; i <= numberOfPlayers; i++) {
+    player = new Player(i, 0);
+    playerScoreboard.innerHTML += player.render();
+  }
+
+  turnTracker(randomTurn);
 
   // assign category Id for future use with API get
   questionBoxes.forEach((box) => {
@@ -102,6 +132,7 @@ function questionBoxListeners(questions) {
       ) {
         currentQuestion = new Question(
           questions[i].question,
+          questions[i].difficulty,
           questions[i].answer,
           questions[i].choices
         );
@@ -142,61 +173,69 @@ function fetchQuestions(difficulty, category, categoryId) {
       questionObj.category = category;
       questionObj.choices = [];
 
-      // get additional answers for multiple choice
-      for (i = 0; i < responseLength; i++) {
-        if (i !== randomNum) {
-          questionObj.choices.push(respObj[i].answer);
+      while(x !== 3) {
+        let rndNumber = Math.floor(Math.random() * responseLength);
+        if(rndNumber !== randomNum){
+          questionObj.choices.push(respObj[rndNumber].answer);
           x++;
-          if (x === 3) {
-            break;
-          }
-        }
+        };
       }
+      // get additional answers for multiple choice
+      // for (i = 0; i < responseLength; i++) {
+      //   if (i !== randomNum) {
+      //     questionObj.choices.push(respObj[i].answer);
+      //     x++;
+      //     if (x === 3) {
+      //       break;
+      //     }
+      //   }
+      // }
     });
 
   return questionObj;
 }
 
 // add listeners for multiple choice options
-function addChoiceListeners(answer, question, choices) {
+function addChoiceListeners(answer, question, choices, points) {
   let optionsContainer = document.querySelectorAll(
     ".selected-question__option"
   );
   optionsContainer.forEach((choice) => {
     choice.addEventListener("click", (event) => {
+      // check for correct answer and award points if so
       if (event.target.innerText === answer) {
-        resolveAnswer(true, question, choices);
+        presentGif("correct");
+
+        setTimeout(() => {
+          question.parentNode.removeChild(question);
+          choices.parentNode.removeChild(choices);
+          selectedQuestion.style.display = "none";
+          overlayBg.style.display = "none";
+
+          awardPoints(randomTurn, points);
+
+          // check if no more questions available
+          checkEndGame();
+        }, 5000);
       } else {
-        resolveAnswer(false);
+        presentGif("wrong");
       }
+
+      // shift turn counter to next player
+      setTimeout(() => {
+        randomTurn++;
+
+        if (randomTurn > numberOfPlayers) {
+          randomTurn = 1;
+        }
+
+        turnTracker(randomTurn);
+      }, 5000);
     });
   });
 }
 
-// return "correct" or "wrong" for selected answer
 // use axios and GIPHY API to fetch appropriate gif for result
-function resolveAnswer(result, question, choices) {
-  if (result === true) {
-    // get funny gif - "CORRECT!"
-    presentGif("correct");
-
-    // remove current question
-    question.parentNode.removeChild(question);
-    choices.parentNode.removeChild(choices);
-    selectedQuestion.style.display = "none";
-    overlayBg.style.display = "none";
-
-    // assign points to player
-
-    // shift turn counter to next player
-  } else if (result === false) {
-    // get funny gif - "WRONG!"
-    presentGif("wrong");
-    // shift turn counter to next player
-  }
-}
-
-//
 function presentGif(result) {
   let gifContainer = document.createElement("iframe");
   let gifData;
@@ -230,3 +269,30 @@ function presentGif(result) {
       }, 5000);
     });
 }
+
+function turnTracker(counter) {
+  let currentPlayer = document.getElementById("player-" + counter);
+  let previousPlayer;
+
+  if (currentPlayer.id === "player-1") {
+    previousPlayer = document.getElementById("player-" + numberOfPlayers);
+  } else {
+    previousPlayer = document.getElementById("player-" + (counter - 1));
+  }
+
+  currentPlayer.style.fontWeight = "bold";
+  currentPlayer.style.backgroundColor = "orange";
+  previousPlayer.style.fontWeight = "normal";
+  previousPlayer.style.backgroundColor = "";
+}
+
+function awardPoints(player, points) {
+  let pointsContainer = document.getElementById("player-" + player + "-points");
+  let currentPoints = Number(pointsContainer.innerText);
+  let addPoints = Number(points);
+  let newScore = currentPoints + addPoints;
+
+  pointsContainer.innerText = newScore;
+}
+
+buildGame();
