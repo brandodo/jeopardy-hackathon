@@ -36,6 +36,7 @@ body {
   margin: 5px 10px;
   padding-top: 10px;
   color: #e4dd3b;
+  font-size: 30px;
 }
 
 .question {
@@ -46,12 +47,12 @@ body {
   align-items: center;
 }
 .question__card {
-  background-color: #ffffff;
+  background-color: black;
   height: 500px;
   width: 18%;
   margin-right: 23.04px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 .question__color {
@@ -69,7 +70,7 @@ body {
 .question__list {
   padding: 0;
   width: 90%;
-  margin: 40px 17px;
+  margin: 20px 17px;
 }
 .question__item {
   list-style-type: none;
