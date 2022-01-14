@@ -173,12 +173,12 @@ function fetchQuestions(difficulty, category, categoryId) {
       questionObj.category = category;
       questionObj.choices = [];
 
-      while(x !== 3) {
+      while (x !== 3) {
         let rndNumber = Math.floor(Math.random() * responseLength);
-        if(rndNumber !== randomNum){
+        if (rndNumber !== randomNum) {
           questionObj.choices.push(respObj[rndNumber].answer);
           x++;
-        };
+        }
       }
       // get additional answers for multiple choice
       // for (i = 0; i < responseLength; i++) {
@@ -190,6 +190,9 @@ function fetchQuestions(difficulty, category, categoryId) {
       //     }
       //   }
       // }
+    })
+    .catch((error) => {
+      console.log("Could not retrieve questions");
     });
 
   return questionObj;
@@ -267,6 +270,9 @@ function presentGif(result) {
       setTimeout(() => {
         gifContainer.parentNode.removeChild(gifContainer);
       }, 5000);
+    })
+    .catch((error) => {
+      console.log("Could not retrieve gif");
     });
 }
 
