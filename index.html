@@ -1,34 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Trivia Night</title>
-		<link rel="stylesheet" href="./styles/main.css" />
-	</head>
-	<body>
-		<section class="alex">
-			<div class="alex__head">
-				<img
-					class="alex__image"
-					src="./assets/images/alextribek.png"
-					alt="alextribek"
-				/>
-			</div>
-			<div class="neon">
-				<img class="neon__light" src="./assets/images/sign.jpg" alt="sign" />
-				<div class="neon__intro">
-					<h2 class="neon__starting">WELCOME TO JEOPARDY</h2>
-					<div class="neon__insert">
-						<label class="neon__players"># of players:</label>
-						<input class="neon__number" type="text" />
-					</div>
-					<button class="neon__button">
-						<a href="./pages/trivia.html" class="neon__button--link">START</a>
-					</button>
-				</div>
-			</div>
-		</section>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trivia Night</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+  </head>
+  <body>
+    <section class="alex">
+      <div class="alex__head">
+        <img
+          class="alex__image"
+          src="./assets/images/alextribek.png"
+          alt="alextribek"
+        />
+      </div>
+      <div class="neon">
+        <img class="neon__light" src="./assets/images/sign.jpg" alt="sign" />
+        <div class="neon__intro">
+          <h2 class="neon__starting">WELCOME TO JEOPARDY</h2>
+          <form action="" class="neon__form">
+            <div class="neon__insert">
+              <label class="neon__players"># of players:</label>
+              <div class="neon__container">
+                <input
+                  type="radio"
+                  id="two"
+                  class="neon__number"
+                  name="num-players"
+				  value="2"
+                />
+                <label for="two" class="neon__label">2</label>
+                <input
+                  type="radio"
+                  id="three"
+                  class="neon__number"
+                  name="num-players"
+				  value="3"
+                />
+                <label for="three" class="neon__label">3</label>
+                <input
+                  type="radio"
+                  id="four"
+                  class="neon__number"
+                  name="num-players"
+				  value="4"
+                />
+                <label for="four" class="neon__label">4</label>
+
+                <!-- <input class="neon__number" type="text" /> -->
+              </div>
+            </div>
+            <input type="submit" class="neon__button neon__button--link" value="START">
+          </form>
+        </div>
+      </div>
+    </section>
+    <script src="./scripts/settings.js"></script>
+  </body>
 </html>

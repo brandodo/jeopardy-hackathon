@@ -9,14 +9,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
   </head>
   <body>
+    <div class="overlay"></div>
     <div class="selected-question"></div>
+    <div class="player-scoreboard">
+      <h2 class="player-scoreboard__header">SCOREBOARD</h2>
+    </div>
     <section id="pop-up">
-      <h2 class="title">JEOPARDY</h2>
-
+      <h2 class="title">JEOPARDY!</h2>
       <div class="category"></div>
       <section class="question">
         <div class="question__card">
-          <h2 class="category__heading">FOODS</h2>
+          <div class="category__heading">FOODS</div>
           <div class="question__color">
             <ul id="food" class="question__list">
               <li class="question__item">600</li>
@@ -27,7 +30,7 @@
         </div>
 
         <div class="question__card">
-          <h2 class="category__heading">ANIMALS</h2>
+          <div class="category__heading">ANIMALS</div>
           <div class="question__color--red">
             <ul id="animals" class="question__list">
               <li class="question__item">600</li>
@@ -38,7 +41,7 @@
         </div>
 
         <div class="question__card">
-          <h2 class="category__heading">MOVIES</h2>
+          <div class="category__heading">MOVIES</div>
           <div class="question__color--blue">
             <ul id="movies" class="question__list">
               <li class="question__item">600</li>
@@ -49,6 +52,7 @@
         </div>
       </section>
     </section>
+
     <script src="../scripts/trivia.js"></script>
   </body>
 </html>

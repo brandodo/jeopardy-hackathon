@@ -1,9 +1,14 @@
+// html {
+//   height: 600px;
+// }
+
 body {
   background-image: url(../assets/images/brickwall.jpg);
   background-size: cover;
   background-position: center;
-  height: 100%;
-  position: relative;
+  background-repeat: repeat;
+  // height: 100vh;
+  // position: relative;
   margin: 0px;
   font-family: sans-serif;
 }
@@ -14,13 +19,14 @@ body {
 }
 
 .title {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-  margin-left: 90px;
+  text-align: center;
   font-size: 60px;
-  padding-top: 50px;
   color: #e4dd3b;
+  // display: flex;
+  // justify-content: center;
+  // margin-bottom: 40px;
+  // margin-left: 90px;
+  // padding-top: 50px;
 }
 
 .category {
@@ -34,6 +40,7 @@ body {
     margin: 5px 10px;
     padding-top: 10px;
     color: #e4dd3b;
+    font-size: 30px;
   }
 }
 
@@ -44,12 +51,12 @@ body {
   flex-wrap: wrap;
   align-items: center;
   &__card {
-    background-color: #ffffff;
+    background-color: black;
     height: 500px;
     width: 18%;
     margin-right: 23.04px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 20px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
   }
 
@@ -69,7 +76,7 @@ body {
   &__list {
     padding: 0;
     width: 90%;
-    margin: 40px 17px;
+    margin: 20px 17px;
   }
 
   &__item {
@@ -92,8 +99,78 @@ body {
       background: #e0e722;
       box-shadow: 0 0 50px #e0e722;
       text-decoration: none;
+      cursor: pointer;
     }
   }
+}
+
+.selected-question {
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 400px;
+  height: 300px;
+  background-color: gray;
+  position: absolute;
+  z-index: 1;
+  left: calc(100vw / 3);
+  top: 250px;
+  text-align: center;
+  color: #e4dd3b;
+  border-radius: 10%;
+  font-size: 18px;
+
+  &__question {
+    width: 90%;
+  }
+
+  &__answers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__option {
+    width: 45%;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: black;
+    }
+  }
+}
+
+.player-scoreboard {
+  background-color: lightyellow;
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  left: 15px;
+  top: 300px;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 1;
+  background-color: black;
+  opacity: 60%;
+  display: none;
+  width: 100%;
+  height: 100vh;
+}
+
+.gif-box {
+  position: absolute;
+  z-index: 1;
+  right: 50px;
+  top: 250px;
+  border: none;
 }
 
 @keyframes drop {

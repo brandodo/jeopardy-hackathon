@@ -1,8 +1,11 @@
 let questionBoxes = document.querySelectorAll(".question__item");
 let selectedQuestion = document.querySelector(".selected-question");
+let overlayBg = document.querySelector(".overlay");
 let giphyAPIKey = "eFXa6sZe3b1BwD889es0gi4VBFlhUPAT";
+let playerData = new URLSearchParams(window.location.search);
+let numberOfPlayers = playerData.get("numberPlayers");
 
-buildGame();
+buildGame(numberOfPlayers);
 
 class Question {
   constructor(question, answer, choices) {
@@ -31,6 +34,7 @@ class Question {
       options.splice(randNum, 0, this.answer);
     }
 
+    // append choices to container
     for (i = 0; i < options.length; i++) {
       let option = document.createElement("div");
       option.classList.add("selected-question__option");
@@ -47,7 +51,7 @@ class Question {
 }
 
 // build jeopardy game
-function buildGame() {
+function buildGame(nPlayers) {
   let difficulty;
   let category;
   let categoryId;
@@ -90,7 +94,7 @@ function questionBoxListeners(questions) {
     let parentId = event.target.parentNode.id;
     let level = event.target.innerText;
     let currentQuestion;
-    
+
     for (i = 0; i < questions.length; i++) {
       if (
         questions[i].category == parentId &&
@@ -108,7 +112,7 @@ function questionBoxListeners(questions) {
     }
 
     // stylistic effects when question is chosen
-    // overlayBg.style.display = "inline";
+    overlayBg.style.display = "inline";
     event.target.style.backgroundColor = "black";
     selectedQuestion.style.display = "flex";
   }

@@ -43,7 +43,7 @@ body {
   font-size: 30px;
   font-family: sans-serif;
   bottom: 0px;
-  top: 250px;
+  top: 200px;
   left: 600px;
   right: 0px;
 }
@@ -54,6 +54,19 @@ body {
   position: relative;
   -webkit-animation: text 3s 1;
           animation: text 3s 1;
+}
+.neon__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.neon__container {
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+}
+.neon__label {
+  color: #e4dd3b;
 }
 .neon__insert {
   display: flex;
@@ -68,28 +81,23 @@ body {
   padding-right: 90px;
 }
 .neon__number {
-  width: 300px;
+  width: 20px;
+  margin: 0 10px;
 }
 .neon__button {
   margin: 0;
-  margin-top: 100px;
-  padding: 0;
+  margin-top: 25px;
   display: flex;
   height: 100px;
-  width: 200px;
+  width: 100px;
   justify-content: center;
   align-items: center;
   border-radius: 30px;
   border-style: inset;
   background-color: #000;
   font-family: sans-serif;
-  padding: 20px 20px;
-  display: inline-block;
   color: #e4dd3b;
-  letter-spacing: 2px;
-  text-transform: uppercase;
   font-size: 30px;
-  overflow: hidden;
   -webkit-animation: text 3s 1;
           animation: text 3s 1;
 }
@@ -104,6 +112,7 @@ body {
   background: #e0e722;
   box-shadow: 0 0 50px #e0e722;
   text-decoration: none;
+  cursor: pointer;
 }
 
 @-webkit-keyframes mymove {
