@@ -2,7 +2,7 @@ body {
   background-image: url(../assets/images/brickwall.jpg);
   background-size: cover;
   background-position: center;
-  min-height: 300px;
+  height: 100%;
   position: relative;
   margin: 0px;
   font-family: sans-serif;
