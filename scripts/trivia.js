@@ -55,7 +55,7 @@ class Question {
     for (i = 0; i < options.length; i++) {
       let option = document.createElement("div");
       option.classList.add("selected-question__option");
-      option.innerText = options[i];
+      option.innerText = options[i].toLowerCase();
 
       answerContainer.appendChild(option);
     }
@@ -142,9 +142,10 @@ function questionBoxListeners(questions) {
       }
     }
 
-    // stylistic effects when question is chosen
+    // stylistic effects when question is presented
     overlayBg.style.display = "inline";
     event.target.style.backgroundColor = "black";
+    event.target.classList.remove("question__item--hover");
     selectedQuestion.style.display = "flex";
   }
 }
@@ -180,16 +181,6 @@ function fetchQuestions(difficulty, category, categoryId) {
           x++;
         }
       }
-      // get additional answers for multiple choice
-      // for (i = 0; i < responseLength; i++) {
-      //   if (i !== randomNum) {
-      //     questionObj.choices.push(respObj[i].answer);
-      //     x++;
-      //     if (x === 3) {
-      //       break;
-      //     }
-      //   }
-      // }
     })
     .catch((error) => {
       console.log("Could not retrieve questions");
@@ -206,7 +197,7 @@ function addChoiceListeners(answer, question, choices, points) {
   optionsContainer.forEach((choice) => {
     choice.addEventListener("click", (event) => {
       // check for correct answer and award points if so
-      if (event.target.innerText === answer) {
+      if (event.target.innerText === answer.toLowerCase()) {
         presentGif("correct");
 
         setTimeout(() => {

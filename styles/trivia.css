@@ -83,7 +83,7 @@ body {
   position: relative;
   top: 20px;
 }
-.question__item:hover {
+.question__item--hover:hover {
   color: black;
   background: #e0e722;
   box-shadow: 0 0 50px #e0e722;
@@ -105,7 +105,7 @@ body {
   top: 250px;
   text-align: center;
   color: #e4dd3b;
-  border-radius: 10%;
+  border-radius: 10px;
   font-size: 18px;
 }
 .selected-question__question {
