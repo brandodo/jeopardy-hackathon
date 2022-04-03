@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
     <title>Trivia Night</title>
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
@@ -29,7 +33,7 @@
                   id="two"
                   class="neon__number"
                   name="num-players"
-				  value="2"
+                  value="2"
                 />
                 <label for="two" class="neon__label">2</label>
                 <input
@@ -37,7 +41,7 @@
                   id="three"
                   class="neon__number"
                   name="num-players"
-				  value="3"
+                  value="3"
                 />
                 <label for="three" class="neon__label">3</label>
                 <input
@@ -45,14 +49,18 @@
                   id="four"
                   class="neon__number"
                   name="num-players"
-				  value="4"
+                  value="4"
                 />
                 <label for="four" class="neon__label">4</label>
 
                 <!-- <input class="neon__number" type="text" /> -->
               </div>
             </div>
-            <input type="submit" class="neon__button neon__button--link" value="START">
+            <input
+              type="submit"
+              class="neon__button neon__button--link"
+              value="START"
+            />
           </form>
         </div>
       </div>
