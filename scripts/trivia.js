@@ -54,8 +54,11 @@ class Question {
     // append choices to container
     for (i = 0; i < options.length; i++) {
       let option = document.createElement("div");
+      // let iBrackRegEx = /<i>/;
+      // let iBrackRegExTwo = /<\/i>/;
       option.classList.add("selected-question__option");
       option.innerText = options[i].toLowerCase();
+      // option.innerText = options[i].toLowerCase().replace(iBrackRegEx,"").replace(iBrackRegExTwo,"");
 
       answerContainer.appendChild(option);
     }
@@ -85,6 +88,7 @@ function buildGame() {
     playerScoreboard.innerHTML += player.render();
   }
 
+  // randomly pick player to go first
   turnTracker(randomTurn);
 
   // assign category Id for future use with API get
@@ -159,7 +163,7 @@ function fetchQuestions(difficulty, category, categoryId) {
 
   axios
     .get(
-      "http://jservice.io/api/clues?value=" +
+      "https://jservice.io/api/clues?value=" +
         difficulty +
         "&category=" +
         categoryId
@@ -271,12 +275,14 @@ function turnTracker(counter) {
   let currentPlayer = document.getElementById("player-" + counter);
   let previousPlayer;
 
+  // reset counter to 1 if last player went last, otherwise next player goes
   if (currentPlayer.id === "player-1") {
     previousPlayer = document.getElementById("player-" + numberOfPlayers);
   } else {
     previousPlayer = document.getElementById("player-" + (counter - 1));
   }
 
+  // stylistic effects for current player's turn
   currentPlayer.style.fontWeight = "bold";
   currentPlayer.style.backgroundColor = "orange";
   previousPlayer.style.fontWeight = "normal";
